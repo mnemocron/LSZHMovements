@@ -12,13 +12,26 @@ This script downloads the `json` table from the new LSZH website: [flughafen-zue
 
 ### Usage
 
+```bash
+python3 get-lszh.py --help
+Usage: get-lszh
+
+Options:
+  -h, --help            show this help message and exit
+  -o OUTDIR, --outdir=OUTDIR
+                        [optional] output directory
+  -s, --single-file     [optional] save to single file
+  -p, --spotter-only    [optional] only save the spotter relevant flights
+```
+
 Use the `-o` parameter to specify the output directory.
 
 ```bash
-python3 get-lszh.py -o zrh/
+python3 get-lszh.py -o lszh/
 ```
 
-Outputs: `zrh/arrivals.timetable.json` and `zrh/departures.timetable.json` 
+Outputs: `lszh/arrivals.timetable.json` and `lszh/departures.timetable.json` 
+or `lszh/arrivals.timetable.spotter.json` and `lszh/departures.timetable.spotter.json` if the '--spotter-only' option is enabled.
 
 ### Example Output
 

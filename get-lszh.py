@@ -36,12 +36,26 @@ def getLSZH(tabletyp, spotter=False):
     if("flightType" in response.text):
         rawtable = json.loads(response.text)
         for flight in rawtable:
+            # arrivals
             if('arr' in tabletyp.lower()):
                 if('a' in flight['flightType'].lower()):
-                    timetable.append(flight)
+                    # only count as spotter if isCommercial = false
+                    if(spotter == True):
+                        if('isCommercial' in flight):
+                            if(flight['isCommercial'] == True):
+                                timetable.append(flight)
+                    else:
+                        timetable.append(flight)
+            # departures
             else:
                 if('d' in flight['flightType'].lower()):
-                    timetable.append(flight)    
+                    # only count as spotter if isCommercial = false
+                    if(spotter == True):
+                        if('isCommercial' in flight):
+                            if(flight['isCommercial'] == True):
+                                timetable.append(flight)
+                    else:
+                        timetable.append(flight)  
     return timetable
 
 def writeJsonFile(filename, data):
@@ -51,7 +65,7 @@ def writeJsonFile(filename, data):
 #%%
 def main():
     try:
-        outdir = '.'
+        outdir = './lszh'
         if(opts.outdir is not None):
             outdir = opts.outdir
             
