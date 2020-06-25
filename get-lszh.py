@@ -79,7 +79,7 @@ def main():
         table['data'] = []
         if(opts.single is not None):
             table['data'] = getLSZH('arr', opts.spotter)
-            table['data'] = table['data'] + getLSZB('dep')
+            table['data'] = table['data'] + getLSZH('dep')
             # sort by arrital time
             table['data'] = sorted(table['data'], key=lambda k: k['scheduledTime']) 
             writeJsonFile(outdir + '/timetable' + fileapp, table)
