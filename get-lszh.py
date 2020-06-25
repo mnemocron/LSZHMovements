@@ -81,12 +81,14 @@ def main():
             table['data'] = getLSZH('arr', opts.spotter)
             table['data'] = table['data'] + getLSZH('dep')
             # sort by arrital time
-            table['data'] = sorted(table['data'], key=lambda k: k['scheduledTime']) 
+            table['data'] = sorted(table['data'], key=lambda k: k['SDT']) 
             writeJsonFile(outdir + '/timetable' + fileapp, table)
         else:
             table['data'] = getLSZH('arr', opts.spotter)
             writeJsonFile(outdir + '/arrivals.timetable' + fileapp, table)
             table['data'] = getLSZH('dep', opts.spotter)
+            # sort by departure time
+            table['data'] = sorted(table['data'], key=lambda k: k['SDT']) 
             writeJsonFile(outdir + '/departures.timetable' + fileapp, table)
         
     except KeyboardInterrupt:
